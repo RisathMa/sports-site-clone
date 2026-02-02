@@ -71,6 +71,9 @@ export function Footer() {
             <div className="w-16 h-16 opacity-90 mt-2">
               <img src="/developer-logo.png" alt="Developer Logo" className="w-full h-full object-contain" />
             </div>
+            <p className="text-xs text-muted-foreground mt-4 opacity-70">
+              © 2026 Gothami School & CompanyRM. All rights reserved.
+            </p>
           </div>
         </div>
       </div>

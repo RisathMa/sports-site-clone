@@ -24,4 +24,7 @@ const App = () => (
   </QueryClientProvider>
 );
 
+// Disable right-click globally
+document.addEventListener('contextmenu', (event) => event.preventDefault());
+
 export default App;
