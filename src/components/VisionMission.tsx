@@ -18,9 +18,7 @@ export function VisionMission() {
               <h3 className="text-lg font-bold text-foreground">SPORTS VISION</h3>
             </div>
             <p className="text-muted-foreground leading-relaxed">
-              To cultivate excellence in sports and athletics, fostering a culture of teamwork, 
-              discipline, and competitive spirit that develops well-rounded individuals who excel 
-              both on and off the field.
+              To empower every student through the spirit of sport, building a legacy of athletic excellence, unshakable discipline, and collaborative leadership that prepares them to win in every arena of life.
             </p>
           </div>
 
@@ -33,9 +31,7 @@ export function VisionMission() {
               <h3 className="text-lg font-bold text-foreground">SPORTS MISSION</h3>
             </div>
             <p className="text-muted-foreground leading-relaxed">
-              To provide comprehensive sports programs that promote physical fitness, mental 
-              resilience, and fair play. Through inter-house competitions and athletic events, 
-              we develop champions who embody integrity, perseverance, and sportsmanship.
+              Our mission is to ignite a passion for physical and mental mastery. By hosting high-standard competitions and diverse athletic programs, we forge resilient athletes who lead with integrity, embrace challenges with perseverance, and honor the true essence of sportsmanship.
             </p>
           </div>
         </div>
