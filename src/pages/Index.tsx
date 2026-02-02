@@ -1,0 +1,192 @@
+import { useState, useEffect } from "react";
+import {
+  Trophy,
+  Activity,
+  Camera,
+  BarChart3,
+  Users,
+  History,
+  FileText,
+  Smartphone,
+  Download
+} from "lucide-react";
+import { HouseRankCard } from "@/components/HouseRankCard";
+import { ExploreCard } from "@/components/ExploreCard";
+import { VisionMission } from "@/components/VisionMission";
+import { SportsOath } from "@/components/SportsOath";
+import { ScoresTabs } from "@/components/ScoresTabs";
+import { WinningMoments } from "@/components/WinningMoments";
+import { Footer } from "@/components/Footer";
+import { HouseDetailsModal } from "@/components/HouseDetailsModal";
+import { sportsService, House } from "@/services/sportsService";
+
+const exploreItems = [
+  { title: "Live Scores", description: "View real-time event results", icon: Activity },
+  { title: "Winning Moments", description: "Captured memories & highlights", icon: Camera },
+  { title: "Analytics Hub", description: "Deep dive into performance", icon: BarChart3 },
+  { title: "Meet Leaders", description: "Teachers & Captains", icon: Users },
+  { title: "Historical Comparison", description: "Multi-year performance trends", icon: History },
+  { title: "Full Results Summary", description: "Past year champion lists", icon: FileText },
+];
+
+export default function Index() {
+  const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const [houseRankings, setHouseRankings] = useState<any[]>([]);
+  const [selectedHouse, setSelectedHouse] = useState<any | null>(null);
+
+  useEffect(() => {
+    // Simulate loading progress while fetching data
+    const timer = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 90) {
+          // Wait for data fetch to complete before hitting 100
+          return prev;
+        }
+        return prev + 5;
+      });
+    }, 50);
+
+    const fetchData = async () => {
+      try {
+        const houses = await sportsService.getHouses();
+        // Transform for UI
+        const rankings = houses.map((h, index) => ({
+          rank: index + 1, // Assumption: getHouses returns ordered list
+          houseName: h.name,
+          score: h.total_score,
+          houseColor: h.color_key as any
+        }));
+        setHouseRankings(rankings);
+      } catch (error) {
+        console.error("Failed to fetch house rankings:", error);
+        // Fallback or error state could be handled here
+      } finally {
+        setProgress(100);
+        clearInterval(timer);
+        setTimeout(() => setLoading(false), 300);
+      }
+    };
+
+    fetchData();
+
+    return () => clearInterval(timer);
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center px-4">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold text-gradient-gold mb-2">{progress}%</h1>
+          <p className="text-muted-foreground text-sm mb-6">LOADING LIVE DATA...</p>
+          <div className="w-64 h-2 bg-muted rounded-full overflow-hidden">
+            <div
+              className="h-full bg-primary rounded-full transition-all duration-100"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <main className="min-h-screen">
+      {/* Hero Section */}
+      <section className="py-16 px-4 fade-in-up">
+        <div className="max-w-4xl mx-auto text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+            <Trophy className="w-4 h-4" />
+            Gothami School Sportmeet Dashboard
+          </div>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+            Overall House Rankings{" "}
+            <span className="text-gradient-gold">2026</span>
+          </h1>
+          <p className="text-muted-foreground max-w-xl mx-auto">
+            Live standings and competitive rankings across all sports events
+          </p>
+        </div>
+
+        {/* House Rankings */}
+        <div className="max-w-2xl mx-auto space-y-4 stagger-children">
+          {houseRankings.length > 0 ? (
+            houseRankings.map((house) => (
+              <HouseRankCard
+                key={house.houseName}
+                {...house}
+                onClick={() => setSelectedHouse(house)}
+              />
+            ))
+          ) : (
+            <div className="text-center text-muted-foreground">No rankings available yet.</div>
+          )}
+        </div>
+
+        {/* House Details Modal */}
+        {selectedHouse && (
+          <HouseDetailsModal
+            isOpen={!!selectedHouse}
+            onClose={() => setSelectedHouse(null)}
+            houseName={selectedHouse.houseName}
+            houseColor={selectedHouse.houseColor}
+            totalScore={selectedHouse.score}
+            rank={selectedHouse.rank}
+          />
+        )}
+      </section>
+
+      {/* Explore Section */}
+      <section className="py-16 px-4 bg-gradient-to-b from-transparent via-secondary/10 to-transparent">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-xl font-semibold text-foreground text-center mb-8">
+            Explore Section
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 stagger-children">
+            {exploreItems.map((item) => (
+              <ExploreCard key={item.title} {...item} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Vision & Mission */}
+      <VisionMission />
+
+      {/* Sports Oath */}
+      <SportsOath />
+
+      {/* Install App CTA */}
+      <section className="py-12 px-4">
+        <div className="max-w-xl mx-auto">
+          <div className="glass-card rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+            <div className="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center shrink-0">
+              <Smartphone className="w-8 h-8 text-primary" />
+            </div>
+            <div className="flex-1">
+              <h3 className="text-lg font-bold text-foreground mb-1">
+                Live Updates on Your Phone
+              </h3>
+              <p className="text-muted-foreground text-sm">
+                Install the SportMeet app for the best experience.
+              </p>
+            </div>
+            <button className="flex items-center gap-2 px-5 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors">
+              <Download className="w-4 h-4" />
+              Install Now
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Sports Scores */}
+      <ScoresTabs />
+
+      {/* Winning Moments */}
+      <WinningMoments />
+
+      {/* Footer */}
+      <Footer />
+    </main>
+  );
+}

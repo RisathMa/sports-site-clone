@@ -1,0 +1,232 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* BC Sports Design System - Dark Sports Theme with Red/Maroon Accents */
+
+@layer base {
+  :root {
+    /* Main dark maroon/red gradient background */
+    --background: 0 0% 5%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 20% 8%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 20% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Primary - Gold/Yellow for highlights */
+    --primary: 45 100% 50%;
+    --primary-foreground: 0 0% 5%;
+
+    /* Secondary - Deep maroon */
+    --secondary: 0 60% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 20% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    /* Accent - Bright red */
+    --accent: 0 85% 45%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 0 20% 20%;
+    --input: 0 20% 15%;
+    --ring: 45 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom colors for houses */
+    --house-parasathu: 140 60% 45%;
+    /* Green */
+    --house-madara: 45 100% 50%;
+    /* Yellow */
+    --house-sewwandi: 0 75% 50%;
+    /* Red */
+    --house-kethaki: 210 80% 55%;
+    /* Blue */
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(180deg, hsl(0 0% 5%) 0%, hsl(0 40% 8%) 50%, hsl(0 50% 12%) 100%);
+    --gradient-card: linear-gradient(145deg, hsla(0, 20%, 15%, 0.8) 0%, hsla(0, 20%, 10%, 0.6) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(45 100% 50%) 0%, hsl(35 100% 45%) 100%);
+    --gradient-red: linear-gradient(180deg, hsl(0 60% 25%) 0%, hsl(0 50% 15%) 100%);
+
+    /* Glass effect */
+    --glass-bg: hsla(0, 20%, 10%, 0.7);
+    --glass-border: hsla(0, 0%, 100%, 0.1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    background: var(--gradient-hero);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+
+  /* Glassmorphic card effect */
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+  }
+
+  /* Gold gradient text */
+  .text-gradient-gold {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Rank badge styles */
+  .rank-badge-gold {
+    background: var(--gradient-gold);
+    color: hsl(0 0% 5%);
+    box-shadow: 0 0 20px hsla(45, 100%, 50%, 0.4);
+  }
+
+  .rank-badge-silver {
+    background: linear-gradient(135deg, hsl(0 0% 75%) 0%, hsl(0 0% 55%) 100%);
+    color: hsl(0 0% 5%);
+    box-shadow: 0 0 15px hsla(0, 0%, 70%, 0.3);
+  }
+
+  .rank-badge-bronze {
+    background: linear-gradient(135deg, hsl(30 60% 50%) 0%, hsl(25 50% 35%) 100%);
+    color: hsl(0 0% 98%);
+    box-shadow: 0 0 15px hsla(30, 60%, 50%, 0.3);
+  }
+
+  /* House color badges */
+  .house-parasathu {
+    --house-color: hsl(var(--house-parasathu));
+    border-color: hsl(var(--house-parasathu));
+    box-shadow: 0 0 20px hsla(var(--house-parasathu) / 0.3);
+  }
+
+  .house-madara {
+    --house-color: hsl(var(--house-madara));
+    border-color: hsl(var(--house-madara));
+    box-shadow: 0 0 20px hsla(var(--house-madara) / 0.3);
+  }
+
+  .house-sewwandi {
+    --house-color: hsl(var(--house-sewwandi));
+    border-color: hsl(var(--house-sewwandi));
+    box-shadow: 0 0 20px hsla(var(--house-sewwandi) / 0.3);
+  }
+
+  .house-kethaki {
+    --house-color: hsl(var(--house-kethaki));
+    border-color: hsl(var(--house-kethaki));
+    box-shadow: 0 0 20px hsla(var(--house-kethaki) / 0.3);
+  }
+
+  /* Progress bar animation */
+  .progress-fill {
+    animation: progressFill 1.5s ease-out forwards;
+  }
+
+  @keyframes progressFill {
+    from {
+      width: 0%;
+    }
+  }
+
+  /* Pulse glow animation */
+  .glow-pulse {
+    animation: glowPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+
+    0%,
+    100% {
+      opacity: 1;
+      filter: drop-shadow(0 0 10px currentColor);
+    }
+
+    50% {
+      opacity: 0.8;
+      filter: drop-shadow(0 0 20px currentColor);
+    }
+  }
+
+  /* Fade in animation */
+  .fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Stagger children */
+  .stagger-children>* {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease-out forwards;
+  }
+
+  .stagger-children>*:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  .stagger-children>*:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .stagger-children>*:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  .stagger-children>*:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+
+  .stagger-children>*:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+
+  .stagger-children>*:nth-child(6) {
+    animation-delay: 0.6s;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(0 20% 8%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(0 40% 20%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(0 50% 30%);
+}
