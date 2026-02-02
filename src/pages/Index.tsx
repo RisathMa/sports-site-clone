@@ -76,14 +76,19 @@ export default function Index() {
   if (loading) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center px-4">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-gradient-gold mb-2">{progress}%</h1>
-          <p className="text-muted-foreground text-sm mb-6">LOADING LIVE DATA...</p>
-          <div className="w-64 h-2 bg-muted rounded-full overflow-hidden">
-            <div
-              className="h-full bg-primary rounded-full transition-all duration-100"
-              style={{ width: `${progress}%` }}
-            />
+        <div className="flex flex-col items-center justify-center space-y-6">
+          <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-primary/30 shadow-2xl animate-pulse">
+            <img src="/school-logo.jpg" alt="School Logo" className="w-full h-full object-cover" />
+          </div>
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-gradient-gold mb-2">{progress}%</h1>
+            <p className="text-muted-foreground text-sm mb-6">LOADING LIVE DATA...</p>
+            <div className="w-64 h-2 bg-muted rounded-full overflow-hidden">
+              <div
+                className="h-full bg-primary rounded-full transition-all duration-100"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -94,7 +99,10 @@ export default function Index() {
     <main className="min-h-screen">
       {/* Hero Section */}
       <section className="py-16 px-4 fade-in-up">
-        <div className="max-w-4xl mx-auto text-center mb-12">
+        <div className="max-w-4xl mx-auto text-center mb-12 flex flex-col items-center">
+          <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl mb-6">
+            <img src="/school-logo.jpg" alt="School Logo" className="w-full h-full object-cover" />
+          </div>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
             <Trophy className="w-4 h-4" />
             Gothami School Sportmeet Dashboard
@@ -171,10 +179,14 @@ export default function Index() {
                 Install the SportMeet app for the best experience.
               </p>
             </div>
-            <button className="flex items-center gap-2 px-5 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors">
+            <a
+              href="/Gothami.apk"
+              download="Gothami.apk"
+              className="flex items-center gap-2 px-5 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors"
+            >
               <Download className="w-4 h-4" />
               Install Now
-            </button>
+            </a>
           </div>
         </div>
       </section>

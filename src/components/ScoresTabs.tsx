@@ -6,32 +6,46 @@ import { sportsService } from "@/services/sportsService";
 import { cn } from "@/lib/utils";
 
 export function ScoresTabs() {
-  const [completedEvents, setCompletedEvents] = useState<any[]>([]);
+  const [events, setEvents] = useState<{ completed: any[], ongoing: any[], upcoming: any[] }>({
+    completed: [],
+    ongoing: [],
+    upcoming: []
+  });
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState("completed");
+  const [activeTab, setActiveTab] = useState("ongoing"); // Default to Live if available, or fallbacks
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const events = await sportsService.getEvents();
+        const allEvents = await sportsService.getEvents();
 
-        // Transform API data to match UI component expectations
-        const transformedEvents = events
-          .filter(e => e.status === 'completed')
-          .map(e => ({
-            sportName: e.name,
-            date: e.date,
-            venue: e.venue,
-            scores: e.results
-              .sort((a, b) => b.score - a.score)
-              .map(r => ({
-                house: r.house_id,
-                score: r.score,
-                color: r.house_id as any // Matches the "Parasathu" | "Madara" etc.
-              }))
-          }));
+        // Helper to transform event data
+        const transformEvent = (e: any) => ({
+          sportName: e.name,
+          date: e.date,
+          venue: e.venue,
+          scores: e.results
+            ?.sort((a: any, b: any) => b.score - a.score)
+            .map((r: any) => ({
+              house: r.house_id,
+              score: r.score,
+              color: r.house_id as any
+            })) || []
+        });
 
-        setCompletedEvents(transformedEvents);
+        const newEvents = {
+          completed: allEvents.filter(e => e.status === 'completed').map(transformEvent),
+          ongoing: allEvents.filter(e => e.status === 'ongoing').map(transformEvent),
+          upcoming: allEvents.filter(e => e.status === 'upcoming').map(transformEvent)
+        };
+
+        setEvents(newEvents);
+
+        // Auto-select tab based on activity
+        if (newEvents.ongoing.length > 0) setActiveTab("ongoing");
+        else if (newEvents.upcoming.length > 0) setActiveTab("upcoming");
+        else setActiveTab("completed");
+
       } catch (error) {
         console.error("Failed to load scores:", error);
       } finally {
@@ -46,15 +60,11 @@ export function ScoresTabs() {
     return <div className="py-12 text-center text-muted-foreground">Loading scores...</div>;
   }
 
-  const sportsScores = {
-    completed: completedEvents,
-    live: [],
-    upcoming: []
-  };
+  const sportsScores = events;
 
   const tabs = [
     { id: "completed", label: "Completed", count: sportsScores.completed.length },
-    { id: "ongoing", label: "Live Now", count: sportsScores.live.length },
+    { id: "ongoing", label: "Live Now", count: sportsScores.ongoing.length },
     { id: "upcoming", label: "Upcoming", count: sportsScores.upcoming.length },
   ];
 

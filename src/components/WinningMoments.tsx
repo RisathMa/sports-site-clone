@@ -70,7 +70,7 @@ export function WinningMoments() {
 
         {/* Year Tabs */}
         <div className="flex justify-center gap-2 mb-8">
-          {["2026", "2025", "Mix"].map((year, index) => (
+          {["2026"].map((year, index) => (
             <button
               key={year}
               className={cn(

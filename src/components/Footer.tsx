@@ -7,7 +7,12 @@ export function Footer() {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* About */}
           <div>
-            <h3 className="font-bold text-foreground mb-3">Gothami School Sports 2026</h3>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-full overflow-hidden border border-primary/20">
+                <img src="/school-logo.jpg" alt="Gothami School" className="w-full h-full object-cover" />
+              </div>
+              <h3 className="font-bold text-foreground">Gothami School Sports 2026</h3>
+            </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Official Sports Meet platform for Gothami School Gampaha.
               Tracking live scores, rankings, and celebrating victories.
@@ -33,7 +38,7 @@ export function Footer() {
             <h3 className="font-bold text-foreground mb-3">Connect With Us</h3>
             <div className="flex gap-3">
               <a
-                href="https://facebook.com/teambccdc"
+                href="https://www.facebook.com/profile.php?id=61550895933868"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover:bg-primary/20 transition-colors"
@@ -45,14 +50,28 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-border/50 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Code className="w-4 h-4" />
-            <span>Sanjanani Media Unit of Bandaranayake College Gampaha</span>
+        <div className="border-t border-border/50 pt-6 flex flex-col items-center justify-between gap-4">
+          <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Code className="w-4 h-4" />
+              <span>Sanjanani Media Unit of Gothami School Gampaha</span>
+            </div>
+            <p className="text-sm text-muted-foreground flex items-center gap-1">
+              Made with <Heart className="w-4 h-4 text-accent fill-accent" /> From Gothami
+            </p>
           </div>
-          <p className="text-sm text-muted-foreground flex items-center gap-1">
-            Made with <Heart className="w-4 h-4 text-accent fill-accent" /> From Gothami
-          </p>
+
+          <div className="flex flex-col items-center gap-2 mt-6 pt-6 border-t border-border/30 w-full">
+            <p className="text-sm text-muted-foreground font-medium flex items-center gap-2">
+              Developed By <span className="text-primary font-bold text-base">Risath Manvidu</span>
+            </p>
+            <p className="text-xs text-muted-foreground font-medium">
+              Assistant Developer <span className="text-foreground/80 font-semibold">Pemidu Dissanayake</span>
+            </p>
+            <div className="w-16 h-16 opacity-90 mt-2">
+              <img src="/developer-logo.png" alt="Developer Logo" className="w-full h-full object-contain" />
+            </div>
+          </div>
         </div>
       </div>
     </footer>

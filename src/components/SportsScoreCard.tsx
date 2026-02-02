@@ -48,9 +48,11 @@ export function SportsScoreCard({ sportName, date, venue, scores }: SportsScoreC
             </span>
           </div>
         </div>
-        <div className={cn("px-3 py-1 rounded-full text-xs font-semibold", houseBgColors[winner.color])}>
-          {winner.house} Wins
-        </div>
+        {winner && (
+          <div className={cn("px-3 py-1 rounded-full text-xs font-semibold", houseBgColors[winner.color])}>
+            {winner.house} Wins
+          </div>
+        )}
       </div>
 
       <div className="grid grid-cols-2 gap-3">
