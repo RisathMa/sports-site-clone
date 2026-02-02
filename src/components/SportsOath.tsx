@@ -10,21 +10,13 @@ export function SportsOath() {
           <Quote className="w-10 h-10 text-primary/30 absolute top-4 left-4" />
 
           <blockquote className="text-muted-foreground leading-relaxed text-lg italic mb-6">
-            "We, the students of Gothami School Gampaha, take the oath with great pride
-            and honour, in front of the National Flag and the School Flag that we will compete
-            in co-operation and brotherhood in accordance with the accepted rules and regulations
-            of sports, by dividing into four houses as Sewwandi, Madara, Parasathu and Kethaki to
-            uplift the mobility and the greatness of the Sports."
+            "We, the students of Gothami School Gampaha, standing before the National and School flags, do hereby pledge with honor and integrity. As we compete representing the houses of Sewwandi, Madara, Parasathu, and Kethaki, we vow to uphold the true spirit of sportsmanship. We commit to competing with discipline, respecting all rules and regulations, and fostering a bond of brotherhood, accepting both victory and defeat with a balanced mind for the glory of our school."
           </blockquote>
 
           <div className="w-16 h-1 bg-primary mx-auto rounded-full mb-6" />
 
           <p className="text-muted-foreground text-sm leading-relaxed">
-            "ගම්පහ ගොතමි විද්‍යාලයේ සිසු දරුවන් වන අපි; සෙව්වන්දි, මදාරා, පරසතු හා කේතකී
-            යන නිවාස හතරට බෙදී ක්‍රීඩාවේ ශ්‍රේෂ්ඨත්වය හා උත්තරීතර බව සනාථ කරමින්, එහි කීර්ති
-            නාමය ආරක්ෂා වන පරිදි, සහෝදරත්වයෙන් හා සහයෝගයෙන් යුතුව සම්මත ක්‍රීඩා නීති රීතිවලට
-            අවනතව තරග වදින බවටත්, ජය පරාජය සම සිතින් භුක්ති විඳින බවටත් ජාතික ධජය ඉදිරිපිට
-            ගෞරව බහුමානයෙන් යුතුව ප්‍රතිඥා දෙමු."
+            "ගම්පහ ගොතමි විද්‍යාලීය ක්‍රීඩා පිටියට පිවිසි සිසු දරුවන් වන අපි; සෙව්වන්දි, මදාරා, පරසතු සහ කේතකී යන සිවු නිවාස නියෝජනය කරමින්, ජාතික ධජයත් පාසල් ධජයත් ඉදිරියේ මහත් අභිමානයෙන් යුතුව ප්‍රතිඥා දෙමු. ක්‍රීඩාවේ සැබෑ විනය හා උදාරත්වය විදහා පාමින්, සහෝදරත්වයේ දෑත් එකිනෙක පටලවමින්, සම්මත නීති රීතිවලට ගරු කරමින්, ජය පරාජයෙහි නොසැලෙන මැදහත් සිතින් යුතුව තරග බිමට පිවිසෙන බවට අපි මෙසේ සපථ කර සිටිමු."
           </p>
         </div>
       </div>
