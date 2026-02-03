@@ -23,11 +23,17 @@ export function Footer() {
           <div>
             <h3 className="font-bold text-foreground mb-3">Quick Links</h3>
             <ul className="space-y-2">
-              {["Live Scores", "Winning Moments", "Analytics Hub", "Meet Leaders"].map((link) => (
+              {["Live Scores", "Analytics Hub"].map((link) => (
                 <li key={link}>
-                  <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  <button
+                    onClick={() => {
+                      const id = link === "Live Scores" ? "house-rankings" : "analytics-hub";
+                      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
                     {link}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -62,13 +68,16 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col items-center gap-2 mt-6 pt-6 border-t border-border/30 w-full">
-            <p className="text-sm text-muted-foreground font-medium flex items-center gap-2">
-              Developed By <span className="text-primary font-bold text-base">Risath Manvidu</span>
+            <p className="text-lg text-muted-foreground font-medium flex items-center gap-2">
+              Developed By <span className="text-primary font-bold text-xl">Risath Manvidu</span>
             </p>
-            <p className="text-xs text-muted-foreground font-medium">
-              Assistant Developer <span className="text-foreground/80 font-semibold">Pemidu Dissanayake</span>
+            <p className="text-sm text-muted-foreground font-medium">
+              Assistant Developer <span className="text-foreground/80 font-semibold text-base">Pemidu Dissanayake</span>
             </p>
-            <div className="w-16 h-16 opacity-90 mt-2">
+            <p className="text-sm text-muted-foreground font-medium">
+              Database Control <span className="text-foreground/80 font-semibold text-base">Risath Manvidu & Mindula Sanvidu</span>
+            </p>
+            <div className="w-24 h-24 opacity-90 mt-4">
               <img src="/developer-logo.png" alt="Developer Logo" className="w-full h-full object-contain" />
             </div>
             <p className="text-xs text-muted-foreground mt-4 opacity-70">

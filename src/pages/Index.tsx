@@ -15,18 +15,16 @@ import { ExploreCard } from "@/components/ExploreCard";
 import { VisionMission } from "@/components/VisionMission";
 import { SportsOath } from "@/components/SportsOath";
 import { ScoresTabs } from "@/components/ScoresTabs";
-import { WinningMoments } from "@/components/WinningMoments";
+import { AnalyticsHub } from "@/components/AnalyticsHub";
 import { Footer } from "@/components/Footer";
 import { HouseDetailsModal } from "@/components/HouseDetailsModal";
+import { HistoricalDataModal } from "@/components/HistoricalDataModal";
 import { sportsService, House } from "@/services/sportsService";
 
 const exploreItems = [
   { title: "Live Scores", description: "View real-time event results", icon: Activity },
-  { title: "Winning Moments", description: "Captured memories & highlights", icon: Camera },
   { title: "Analytics Hub", description: "Deep dive into performance", icon: BarChart3 },
-  { title: "Meet Leaders", description: "Teachers & Captains", icon: Users },
   { title: "Historical Comparison", description: "Multi-year performance trends", icon: History },
-  { title: "Full Results Summary", description: "Past year champion lists", icon: FileText },
 ];
 
 export default function Index() {
@@ -34,6 +32,7 @@ export default function Index() {
   const [progress, setProgress] = useState(0);
   const [houseRankings, setHouseRankings] = useState<any[]>([]);
   const [selectedHouse, setSelectedHouse] = useState<any | null>(null);
+  const [isHistoricalModalOpen, setIsHistoricalModalOpen] = useState(false);
 
   useEffect(() => {
     // Simulate loading progress while fetching data
@@ -117,7 +116,7 @@ export default function Index() {
         </div>
 
         {/* House Rankings */}
-        <div className="max-w-2xl mx-auto space-y-4 stagger-children">
+        <div id="house-rankings" className="max-w-2xl mx-auto space-y-4 stagger-children scroll-mt-20">
           {houseRankings.length > 0 ? (
             houseRankings.map((house) => (
               <HouseRankCard
@@ -152,7 +151,19 @@ export default function Index() {
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 stagger-children">
             {exploreItems.map((item) => (
-              <ExploreCard key={item.title} {...item} />
+              <ExploreCard
+                key={item.title}
+                {...item}
+                onClick={() => {
+                  if (item.title === "Historical Comparison") {
+                    setIsHistoricalModalOpen(true);
+                  } else if (item.title === "Live Scores") {
+                    document.getElementById('house-rankings')?.scrollIntoView({ behavior: 'smooth' });
+                  } else if (item.title === "Analytics Hub") {
+                    document.getElementById('analytics-hub')?.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              />
             ))}
           </div>
         </div>
@@ -192,10 +203,18 @@ export default function Index() {
       </section>
 
       {/* Sports Scores */}
-      <ScoresTabs />
+      <section id="sports-scores">
+        <ScoresTabs />
+      </section>
 
-      {/* Winning Moments */}
-      <WinningMoments />
+      {/* Analytics Hub */}
+      <AnalyticsHub />
+
+      {/* Historical Data Modal */}
+      <HistoricalDataModal
+        isOpen={isHistoricalModalOpen}
+        onClose={() => setIsHistoricalModalOpen(false)}
+      />
 
       {/* Footer */}
       <Footer />

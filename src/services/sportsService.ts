@@ -24,6 +24,14 @@ export interface EventResult {
     position: 1 | 2 | 3 | 4;
 }
 
+export interface HistoricalRanking {
+    id: number;
+    year: number;
+    house_id: string;
+    total_score: number;
+    rank: number;
+}
+
 export interface FullEventData extends Event {
     results: EventResult[];
 }
@@ -145,5 +153,17 @@ export const sportsService = {
         }
 
         return finalFormat;
+    },
+
+    // Fetch historical rankings for multiple years
+    getHistoricalData: async (): Promise<HistoricalRanking[]> => {
+        const { data, error } = await supabase
+            .from('historical_rankings')
+            .select('*')
+            .order('year', { ascending: false })
+            .order('rank', { ascending: true });
+
+        if (error) throw error;
+        return data || [];
     }
 };
