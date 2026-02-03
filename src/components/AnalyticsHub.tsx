@@ -17,10 +17,10 @@ import { sportsService, House, HistoricalRanking } from "@/services/sportsServic
 import { BarChart3, TrendingUp, Info } from "lucide-react";
 
 const HOUSE_COLORS: Record<string, string> = {
-    Parasathu: "#EAB308", // yellow-500
-    Madara: "#3B82F6",    // blue-500
+    Parasathu: "#22C55E", // green-500
+    Madara: "#EAB308",    // yellow-500
     Sewwandi: "#EF4444",  // red-500
-    Kethaki: "#22C55E",   // green-500
+    Kethaki: "#3B82F6",   // blue-500
 };
 
 export function AnalyticsHub() {
