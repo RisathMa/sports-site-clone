@@ -117,8 +117,9 @@ export function AnalyticsHub() {
                                             backgroundColor: 'hsl(var(--card))',
                                             borderColor: 'hsl(var(--border))',
                                             borderRadius: '12px',
-                                            color: 'hsl(var(--foreground))'
                                         }}
+                                        itemStyle={{ color: '#fff' }}
+                                        labelStyle={{ color: '#fff', fontWeight: '600' }}
                                     />
                                     <Bar dataKey="total_score" radius={[8, 8, 0, 0]} barSize={50}>
                                         {houses.map((entry, index) => (
