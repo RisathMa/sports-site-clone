@@ -158,6 +158,8 @@ export function AnalyticsHub() {
                                             borderColor: 'hsl(var(--border))',
                                             borderRadius: '12px',
                                         }}
+                                        itemStyle={{ color: '#fff' }}
+                                        labelStyle={{ color: '#fff', fontWeight: '600' }}
                                     />
                                     <Legend iconType="circle" />
                                     {Object.keys(HOUSE_COLORS).map(house => (
