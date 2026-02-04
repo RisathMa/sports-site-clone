@@ -107,8 +107,8 @@ export default function Index() {
             Gothami Kanishta Vidyalaya (GKV) Sportmeet Dashboard
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Overall House Rankings{" "}
-            <span className="text-gradient-gold">Gampaha 2026</span>
+            Overall House Rankings Of <br />
+            <span className="text-gradient-gold">Gothami School 2026</span>
           </h1>
           <p className="text-muted-foreground max-w-xl mx-auto">
             Live standings and competitive rankings for Gothami School Sportmeet, Gampaha. Track house performance in real-time.

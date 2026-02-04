@@ -135,7 +135,7 @@ export function AnalyticsHub() {
                     <div className="glass-card p-6 rounded-2xl border border-border/50">
                         <h3 className="text-lg font-semibold mb-6 flex items-center gap-2">
                             <TrendingUp className="w-5 h-5 text-primary" />
-                            Performance Trends (Last 3 Years)
+                            Performance Trends (Last SportMeet In 2024)
                         </h3>
                         <div className="h-[300px] w-full">
                             <ResponsiveContainer width="100%" height="100%">
