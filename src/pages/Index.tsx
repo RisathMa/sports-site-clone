@@ -100,7 +100,14 @@ export default function Index() {
       <section className="py-16 px-4 fade-in-up">
         <div className="max-w-4xl mx-auto text-center mb-12 flex flex-col items-center">
           <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl mb-6">
-            <img src="/school-logo.jpg" alt="School Logo" className="w-full h-full object-cover" />
+            <img
+              src="/school-logo.jpg"
+              alt="School Logo"
+              className="w-full h-full object-cover"
+              fetchPriority="high"
+              width="128"
+              height="128"
+            />
           </div>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
             <Trophy className="w-4 h-4" />
