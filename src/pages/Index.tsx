@@ -72,27 +72,7 @@ export default function Index() {
     return () => clearInterval(timer);
   }, []);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center px-4">
-        <div className="flex flex-col items-center justify-center space-y-6">
-          <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-primary/30 shadow-2xl animate-pulse">
-            <img src="/school-logo.jpg" alt="School Logo" className="w-full h-full object-cover" />
-          </div>
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-gradient-gold mb-2">{progress}%</h1>
-            <p className="text-muted-foreground text-sm mb-6">LOADING LIVE DATA...</p>
-            <div className="w-64 h-2 bg-muted rounded-full overflow-hidden">
-              <div
-                className="h-full bg-primary rounded-full transition-all duration-100"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // No longer return early if loading. Instead, render the page and show skeletons/loaders where needed.
 
   return (
     <main className="min-h-screen">
@@ -123,8 +103,13 @@ export default function Index() {
         </div>
 
         {/* House Rankings */}
-        <div id="house-rankings" className="max-w-2xl mx-auto space-y-4 stagger-children scroll-mt-20">
-          {houseRankings.length > 0 ? (
+        <div id="house-rankings" className="max-w-2xl mx-auto space-y-4 stagger-children scroll-mt-20 min-h-[400px]">
+          {loading ? (
+            <div className="flex flex-col items-center justify-center py-20 space-y-4">
+              <div className="w-10 h-10 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
+              <p className="text-muted-foreground animate-pulse">Fetching latest scores...</p>
+            </div>
+          ) : houseRankings.length > 0 ? (
             houseRankings.map((house) => (
               <HouseRankCard
                 key={house.houseName}
@@ -133,7 +118,7 @@ export default function Index() {
               />
             ))
           ) : (
-            <div className="text-center text-muted-foreground">No rankings available yet.</div>
+            <div className="text-center text-muted-foreground py-10">No rankings available yet.</div>
           )}
         </div>
 
