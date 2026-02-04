@@ -38,13 +38,13 @@ export default function Index() {
     // Simulate loading progress while fetching data
     const timer = setInterval(() => {
       setProgress((prev) => {
-        if (prev >= 90) {
+        if (prev >= 95) {
           // Wait for data fetch to complete before hitting 100
           return prev;
         }
-        return prev + 5;
+        return prev + 10;
       });
-    }, 50);
+    }, 30);
 
     const fetchData = async () => {
       try {
@@ -63,7 +63,7 @@ export default function Index() {
       } finally {
         setProgress(100);
         clearInterval(timer);
-        setTimeout(() => setLoading(false), 300);
+        setTimeout(() => setLoading(false), 100);
       }
     };
 
@@ -97,7 +97,7 @@ export default function Index() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-16 px-4 fade-in-up">
+      <section className="py-16 px-4 fade-in-up duration-300">
         <div className="max-w-4xl mx-auto text-center mb-12 flex flex-col items-center">
           <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl mb-6">
             <img
