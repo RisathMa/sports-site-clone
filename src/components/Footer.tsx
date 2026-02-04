@@ -77,9 +77,14 @@ export function Footer() {
             <p className="text-sm text-muted-foreground font-medium">
               Database Control <span className="text-foreground/80 font-semibold text-base">Risath Manvidu & Mindula Sanvidu</span>
             </p>
-            <div className="w-24 h-24 opacity-90 mt-4">
+            <a
+              href="https://portfolio.companyrm.lk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-24 h-24 opacity-90 mt-4 block hover:opacity-100 transition-opacity cursor-pointer"
+            >
               <img src="/developer-logo.png" alt="Developer Logo" className="w-full h-full object-contain" />
-            </div>
+            </a>
             <p className="text-xs text-muted-foreground mt-4 opacity-70">
               © 2026 Gothami School & CompanyRM. All rights reserved.
             </p>
