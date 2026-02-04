@@ -38,13 +38,13 @@ export default function Index() {
     // Simulate loading progress while fetching data
     const timer = setInterval(() => {
       setProgress((prev) => {
-        if (prev >= 95) {
+        if (prev >= 90) {
           // Wait for data fetch to complete before hitting 100
           return prev;
         }
-        return prev + 10;
+        return prev + 5;
       });
-    }, 30);
+    }, 50);
 
     const fetchData = async () => {
       try {
@@ -63,7 +63,7 @@ export default function Index() {
       } finally {
         setProgress(100);
         clearInterval(timer);
-        setTimeout(() => setLoading(false), 100);
+        setTimeout(() => setLoading(false), 300);
       }
     };
 
@@ -72,22 +72,35 @@ export default function Index() {
     return () => clearInterval(timer);
   }, []);
 
-  // No longer return early if loading. Instead, render the page and show skeletons/loaders where needed.
+  if (loading) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center px-4">
+        <div className="flex flex-col items-center justify-center space-y-6">
+          <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-primary/30 shadow-2xl animate-pulse">
+            <img src="/school-logo.jpg" alt="School Logo" className="w-full h-full object-cover" />
+          </div>
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-gradient-gold mb-2">{progress}%</h1>
+            <p className="text-muted-foreground text-sm mb-6">LOADING LIVE DATA...</p>
+            <div className="w-64 h-2 bg-muted rounded-full overflow-hidden">
+              <div
+                className="h-full bg-primary rounded-full transition-all duration-100"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-16 px-4 fade-in-up duration-300">
+      <section className="py-16 px-4 fade-in-up">
         <div className="max-w-4xl mx-auto text-center mb-12 flex flex-col items-center">
           <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl mb-6">
-            <img
-              src="/school-logo.jpg"
-              alt="School Logo"
-              className="w-full h-full object-cover"
-              fetchPriority="high"
-              width="128"
-              height="128"
-            />
+            <img src="/school-logo.jpg" alt="School Logo" className="w-full h-full object-cover" />
           </div>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
             <Trophy className="w-4 h-4" />
@@ -103,13 +116,8 @@ export default function Index() {
         </div>
 
         {/* House Rankings */}
-        <div id="house-rankings" className="max-w-2xl mx-auto space-y-4 stagger-children scroll-mt-20 min-h-[400px]">
-          {loading ? (
-            <div className="flex flex-col items-center justify-center py-20 space-y-4">
-              <div className="w-10 h-10 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
-              <p className="text-muted-foreground animate-pulse">Fetching latest scores...</p>
-            </div>
-          ) : houseRankings.length > 0 ? (
+        <div id="house-rankings" className="max-w-2xl mx-auto space-y-4 stagger-children scroll-mt-20">
+          {houseRankings.length > 0 ? (
             houseRankings.map((house) => (
               <HouseRankCard
                 key={house.houseName}
@@ -118,7 +126,7 @@ export default function Index() {
               />
             ))
           ) : (
-            <div className="text-center text-muted-foreground py-10">No rankings available yet.</div>
+            <div className="text-center text-muted-foreground">No rankings available yet.</div>
           )}
         </div>
 

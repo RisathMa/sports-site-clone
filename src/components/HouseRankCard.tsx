@@ -58,7 +58,7 @@ export function HouseRankCard({ rank, houseName, score, houseColor, maxScore = 1
           {/* House Info */}
           <div>
             <p className="text-muted-foreground text-sm">Rank #{rank}</p>
-            <h2 className="text-xl font-bold text-foreground">{houseName}</h2>
+            <h3 className="text-xl font-bold text-foreground">{houseName}</h3>
           </div>
         </div>
 
