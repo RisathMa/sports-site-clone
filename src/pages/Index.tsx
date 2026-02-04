@@ -104,14 +104,14 @@ export default function Index() {
           </div>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
             <Trophy className="w-4 h-4" />
-            Gothami School Sportmeet Dashboard
+            Gothami Kanishta Vidyalaya (GKV) Sportmeet Dashboard
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             Overall House Rankings{" "}
-            <span className="text-gradient-gold">2026</span>
+            <span className="text-gradient-gold">Gampaha 2026</span>
           </h1>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Live standings and competitive rankings across all sports events
+            Live standings and competitive rankings for Gothami School Sportmeet, Gampaha. Track house performance in real-time.
           </p>
         </div>
 

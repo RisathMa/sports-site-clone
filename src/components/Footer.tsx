@@ -14,8 +14,8 @@ export function Footer() {
               <h3 className="font-bold text-foreground">Gothami School Sports 2026</h3>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Official Sports Meet platform for Gothami School Gampaha.
-              Tracking live scores, rankings, and celebrating victories.
+              Official Sportmeet platform for Gothami Kanishta Vidyalaya (GKV), Gampaha.
+              Tracking live GKV sports scores, house rankings, and celebrating student victories.
             </p>
           </div>
 
